@@ -1,0 +1,5 @@
+/node_modules
+/npm-debug.log*
+/archive.zip
+/coverage
+/build
