@@ -1,0 +1,24 @@
+language: node_js
+cache:
+  directories:
+    - node_modules
+notifications:
+  email: false
+before_install:
+- pip install --user awscli
+before_script:
+  - npm prune
+script:
+  - npm run lint
+  - npm run test:coverage-travis
+after_success:
+  - npm run semantic-release
+  - make update
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
+matrix:
+  include:
+    - node_js: '4'
+    - node_js: '6'
+    - node_js: 'node'
