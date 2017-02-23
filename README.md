@@ -1,4 +1,6 @@
 # rheactor-image-service
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/ResourcefulHumans/rheactor-image-service.svg)](https://greenkeeper.io/)
   
 [![npm version](https://img.shields.io/npm/v/@resourcefulhumans/rheactor-image-service.svg)](https://www.npmjs.com/package/@resourcefulhumans/rheactor-image-service)
 [![Build Status](https://travis-ci.org/ResourcefulHumans/rheactor-image-service.svg?token=4soJpdPmroe6syDk1oD3&branch=master)](https://travis-ci.org/ResourcefulHumans/rheactor-image-service)
