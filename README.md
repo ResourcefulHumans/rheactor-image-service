@@ -5,8 +5,8 @@
 [![monitored by greenkeeper.io](https://img.shields.io/badge/greenkeeper.io-monitored-brightgreen.svg)](http://greenkeeper.io/) 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![semantic-release](https://img.shields.io/badge/semver-semantic%20release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![Test Coverage](https://codeclimate.com/repos/58a3106fc0753714da003295/badges/733e1d80ed9259f19ac8/coverage.svg)](https://codeclimate.com/repos/58a3106fc0753714da003295/coverage)
-[![Code Climate](https://codeclimate.com/repos/58a3106fc0753714da003295/badges/733e1d80ed9259f19ac8/gpa.svg)](https://codeclimate.com/repos/58a3106fc0753714da003295/feed)
+[![Test Coverage](https://codeclimate.com/github/ResourcefulHumans/rheactor-image-service/badges/coverage.svg)](https://codeclimate.com/github/ResourcefulHumans/rheactor-image-service/coverage)
+[![Code Climate](https://codeclimate.com/github/ResourcefulHumans/rheactor-image-service/badges/gpa.svg)](https://codeclimate.com/github/ResourcefulHumans/rheactor-image-service)
 
 An image processing backend running on AWS Lambda.
 
