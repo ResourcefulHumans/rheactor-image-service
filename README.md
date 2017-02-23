@@ -1,7 +1,7 @@
 # rheactor-image-service
   
 [![npm version](https://img.shields.io/npm/v/@resourcefulhumans/rheactor-image-service.svg)](https://www.npmjs.com/package/@resourcefulhumans/rheactor-image-service)
-[![Build Status](https://travis-ci.org/ResourcefulHumans/rheactor-image-service.svg?token=4soJpdPmroe6syDk1oD3&branch=master)](https://travis-ci.org/ResourcefulHumans/rheactor-image-service)
+[![Build Status](https://travis-ci.org/ResourcefulHumans/rheactor-image-service.svg?branch=master)](https://travis-ci.org/ResourcefulHumans/rheactor-image-service)
 [![monitored by greenkeeper.io](https://img.shields.io/badge/greenkeeper.io-monitored-brightgreen.svg)](http://greenkeeper.io/) 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![semantic-release](https://img.shields.io/badge/semver-semantic%20release-e10079.svg)](https://github.com/semantic-release/semantic-release)
