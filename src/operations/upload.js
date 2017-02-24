@@ -33,7 +33,7 @@ const upload = (s3, bucket, webLocation, body, parts, token) => {
 
       return new Promise((resolve, reject) => {
         im(imageData, filename)
-          .resize(256, 256)
+          .resize(256, 256, '!')
           .noProfile()
           .autoOrient()
           .toBuffer('JPEG', (err, buffer) => {
