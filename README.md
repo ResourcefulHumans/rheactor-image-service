@@ -16,14 +16,13 @@ on AWS lambda.
 It takes JPEG or PNG images that are uploaded base64 encoded, resizes them on the fly to
 256x256px size, and stores them on an S3 bucket.
 
-It expects to be called via AWS API Gateway and uses parts of the provided API key as a prefix
-for the S3 location.
- 
 ## Request
+
+Users need to provide an [JsonWebToken](https://jwt.io/) which is checked against the configured public key.
 
     POST /upload
     Content-Type: application/vnd.resourceful-humans.rheactor-image-service.v1+json
-    x-api-key: ABCDEFGHIJKLMOPQRSTUVWXYZabcdefghijklmno
+    Authorization: Bearer <token>
     
     {
       "$context":"https://github.com/ResourcefulHumans/rheactor-image-service#Upload",
@@ -37,9 +36,12 @@ for the S3 location.
     
     {
       "$context":"https://github.com/ResourcefulHumans/rheactor-image-service#UploadResult",
-      "url":"https://s3.eu-central-1.amazonaws.com/rheactor-image-service/ABCD-lmno/33f24f55-e435-4198-a148-fdd1095ffa96.jpg",
+      "url":"https://s3.eu-central-1.amazonaws.com/rheactor-image-service/example.com/33f24f55-e435-4198-a148-fdd1095ffa96-user-5.jpg",
       "mimeType":"image/jpeg"
     }
+
+This implementation expects token's `sub` to be an URL, which will be used to prefix and suffix URLs. 
+A `sub` value of `https://example.com/user/5` was used in the example above.
 
 ## Configuration
 
@@ -53,6 +55,8 @@ These environment variables need to be set on the lambda function:
    Public endpoint for the lamba function (as provided by API Gateway)
  - `WEB_LOCATION`  
    Public URL for the bucket
+ - `PUBLIC_KEY`  
+   Public key to be used for verifying tokens
 
 ## Setup
 

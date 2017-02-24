@@ -11,12 +11,12 @@ const contentType = 'application/vnd.resourceful-humans.rheactor-image-service.v
 const version = process.env.VERSION
 const environment = process.env.NODE_ENV
 const deployTime = process.env.DEPLOY_TIME
+const publicKey = `-----BEGIN RSA PUBLIC KEY-----\n${process.env.PUBLIC_KEY.match(/.{1,64}/g).join('\n')}\n-----END RSA PUBLIC KEY-----`
 
 const s3 = new AWS.S3({
   region: process.env.S3_REGION
 })
 
-const tokenSecretOrPrivateKey = 'unused'
 const operations = {
   index: apiIndexOperation(new Index([
     new Link(mountURL.slashless().append('/status'), Status.$context),
@@ -26,4 +26,4 @@ const operations = {
   status: statusOperation(version, environment, deployTime)
 }
 
-export const handler = awsLambdaHandler.bind(null, contentType, environment, tokenSecretOrPrivateKey, operations)
+export const handler = awsLambdaHandler.bind(undefined, contentType, environment, publicKey, operations)

@@ -18,15 +18,17 @@ const AllowedMimeType = refinement(StringType, s => s === 'image/jpeg' || s === 
  * @param {Object} body
  * @param {Array} parts
  * @param {JsonWebToken|undefined} token
- * @param {Object} requestContext
  * @returns {Promise}
  */
-const upload = (s3, bucket, webLocation, body, parts, token, queryStringParameters, requestContext) => {
+const upload = (s3, bucket, webLocation, body, parts, token) => {
   return Promise
     .try(() => {
       UploadJSONType(body)
       const ext = body.mimeType === 'image/png' ? 'png' : 'jpg'
-      const filename = `${requestContext.identity.apiKey.substr(0, 4)}-${requestContext.identity.apiKey.substr(-4)}/${v4()}.${ext}`
+      const sub = new URIValue(token.sub) // we expect token.sub to be an URI
+      const host = sub.toString().match(/^https?:\/\/([^/]+)/)[1].replace(/[^a-z0-9]/ig, '-') // group images by host
+      const identifier = sub.toString().match(/^https?:\/\/[^/]+\/(.+)/)[1].replace(/[^a-z0-9]/ig, '-') // take the path part and add it as an identifier
+      const filename = `${host}/${v4()}-${identifier}.${ext}`
       const imageData = new Buffer(body.image, 'base64')
 
       return new Promise((resolve, reject) => {
