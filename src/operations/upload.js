@@ -31,16 +31,7 @@ const upload = (s3, bucket, webLocation, body, parts, token) => {
       const filename = `${host}/${v4()}-${identifier}.${ext}`
       const imageData = new Buffer(body.image, 'base64')
 
-      return new Promise((resolve, reject) => {
-        im(imageData, filename)
-          .resize(256, 256, '!')
-          .noProfile()
-          .autoOrient()
-          .toBuffer('JPEG', (err, buffer) => {
-            if (err) return reject(err)
-            return resolve(buffer)
-          })
-      })
+      return thumbnail(imageData, filename)
         .then(resized => Promise
           .promisify(s3.putObject, {context: s3})({
             Bucket: bucket,
@@ -87,3 +78,36 @@ export const UploadJSONType = struct({
   image: StringType,
   mimeType: AllowedMimeType
 }, 'UploadJSONType')
+
+/**
+ * @param {Buffer} imageData
+ * @param {String} filename
+ * @return {Promise.<Buffer>}
+ */
+export const thumbnail = (imageData, filename) => {
+  StringType(filename)
+  return new Promise((resolve, reject) => {
+    const image = im(imageData, filename)
+    image.size((err, size) => {
+      const landscape = size.width > size.height
+      const minLen = Math.min(size.width, size.height)
+      let cutX = 0
+      let cutY = 0
+      if (landscape) {
+        cutX = (size.width - size.height) / 2
+      } else {
+        cutY = (size.height - size.width) / 2
+      }
+      if (err) return reject(err)
+      image
+        .crop(minLen, minLen, cutX, cutY)
+        .resize(256, 256)
+        .noProfile()
+        .autoOrient()
+        .toBuffer('JPEG', (err, buffer) => {
+          if (err) return reject(err)
+          return resolve(buffer)
+        })
+    })
+  })
+}
