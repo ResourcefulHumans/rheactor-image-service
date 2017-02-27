@@ -6,11 +6,12 @@ notifications:
   email: false
 before_install:
 - pip install --user awscli
+- pip install --user s3cmd
 before_script:
   - npm prune
 script:
   - npm run lint
-  - npm run test:coverage-travis
+  - make test
 after_success:
   - npm run semantic-release
   - make update

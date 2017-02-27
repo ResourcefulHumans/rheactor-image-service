@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help deploy update-lambda-function update-lambda-env update-env-vars delete clean update
+.PHONY: help deploy update-lambda-function update-lambda-env update-env-vars delete clean update test
 
 AWS_REGION ?= "eu-central-1"
 AWS_FUNCTION_NAME ?= "rheactor-image-service"
@@ -57,6 +57,23 @@ else
 		curl -X POST --data-urlencode 'payload={"text": "version *${VERSION}* of <https://github.com/${TRAVIS_REPO_SLUG}|${TRAVIS_REPO_SLUG}> has been deployed."}' ${SLACK_DEPLOY_WEBHOOK}; \
 	fi
 endif
+
+# Tests
+
+S3_BUCKET ?= rheactor-image-service
+S3_CFG := /tmp/.s3cfg-$(S3_BUCKET)
+HOSTNAME := $(shell hostname)
+
+test: ## Prepare and run the tests
+	# Create s3cmd config
+	@echo $(S3_CFG)
+	@echo "[default]" > $(S3_CFG)
+	@echo "access_key = $(AWS_ACCESS_KEY_ID)" >> $(S3_CFG)
+	@echo "secret_key = $(AWS_SECRET_ACCESS_KEY)" >> $(S3_CFG)
+	@echo "bucket_location = $(AWS_REGION)" >> $(S3_CFG)
+
+	s3cmd -c $(S3_CFG) put -P -M --no-mime-magic ./test/data/public.key s3://$(S3_BUCKET)/$(HOSTNAME)-test.key
+	npm run test:coverage-travis
 
 # Helpers
 

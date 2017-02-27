@@ -55,8 +55,8 @@ These environment variables need to be set on the lambda function:
    Public endpoint for the lamba function (as provided by API Gateway)
  - `WEB_LOCATION`  
    Public URL for the bucket
- - `PUBLIC_KEY`  
-   Public key to be used for verifying tokens
+ - `PUBLIC_KEY_FILE`  
+   Public key file in the bucket to be used for verifying tokens
 
 ## Setup
 
