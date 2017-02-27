@@ -13,8 +13,20 @@ An image processing backend running on AWS Lambda.
 Uses [gm](https://www.npmjs.com/package/gm) with GraphicsMagick (which is available by default)
 on AWS lambda.
 
-It takes JPEG or PNG images that are uploaded base64 encoded, resizes them on the fly to
+It takes JPEG or PNG images that are uploaded base64 encoded, crops and resizes them on the fly to
 256x256px size, and stores them on an S3 bucket.
+
+| Original | Result  |
+|:--------:|:-------:|
+| ![Original](./test/data/d4d4d4.jpg) | ![Result](https://s3.eu-central-1.amazonaws.com/rheactor-image-service/example-com/0225bef5-bdca-4d76-a6c1-5d3b79a1353f-user-5.jpg) |
+| JPEG  | JPEG |
+| 600x300  | 256x256 |
+| ![Original](./test/data/d4d4d4.png) | ![Result](https://s3.eu-central-1.amazonaws.com/rheactor-image-service/127-0-0-1-8080/c48476ec-d8d0-460a-b771-93ea4dbe5ec8-api-user-8.png) |
+| PNG  | JPEG |
+| 600x300  | 256x256 |
+| ![Original](./test/data/11154d.jpg) | ![Result](https://s3.eu-central-1.amazonaws.com/rheactor-image-service/127-0-0-1-8080/977816ce-8620-486f-bea9-cdf2259e323e-api-user-8.jpg) |
+| JPEG  | JPEG | 
+| 300x600  | 256x256 |
 
 ## Request
 
