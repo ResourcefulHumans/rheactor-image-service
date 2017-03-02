@@ -9,8 +9,5 @@
         }
       }
     ]
-  ],
-  "plugins": [
-    "transform-object-assign"
   ]
 }
