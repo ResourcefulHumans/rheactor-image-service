@@ -85,3 +85,42 @@ These environment variables need to be set on the lambda function:
     
     # install this as a new lambda function
     make install
+
+## Live
+
+:earth_africa: <https://vy54h2j2fj.execute-api.eu-central-1.amazonaws.com/prod>
+
+This API is hosted as the [`rheactor-image-service`](https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions/rheactor-image-service?tab=code) AWS Lambda function and the HTTP endpoint is provided via the [`rheactor-image-service`](https://eu-central-1.console.aws.amazon.com/apigateway/home?region=eu-central-1#/apis/vy54h2j2fj/stages/prod) API Gateway stage. 
+
+The Lambda function uses the role [`rheactor-image-service`](https://console.aws.amazon.com/iam/home?region=eu-central-1#/roles/rheactor-image-service).
+
+These environment variables have been configured on the Lamba:
+
+ * `MOUNT_URL=https://vy54h2j2fj.execute-api.eu-central-1.amazonaws.com/prod`  
+    This informations is needed for creating links to the services endpoints.
+ * `S3_BUCKET=rheactor-image-service`  
+    Name of the S3 bucket where to store the scaled images
+ * `S3_REGION=eu-central-1`  
+    Primary S3 region to use
+ * `PUBLIC_KEY_FILE=networhk.prod.key`  
+    The filename in the S3 bucket to load the public key from for verifying tokens
+ * `WEB_LOCATION=https://s3.eu-central-1.amazonaws.com/rheactor-image-service/`  
+    The URI at which the S3 bucket is hosted, the service use this to prefix the create image filenames in its response
+
+### Deployment
+
+:rocket: Deployment for this package is automated via [Travis CI](https://github.com/ResourcefulHumans/rheactor-image-service/blob/master/.travis.yml).  
+**Every commit can potentially trigger a deploy.**
+
+If *lint* and *test* ran without error, [`semantic-release`](https://github.com/semantic-release/semantic-release) will be used to determine the next version for the package and that version string will be written to the `package.json`. After `semantic-release` has been run, [`make update`](https://github.com/ResourcefulHumans/rheactor-image-service/blob/master/Makefile) will be executed to deploy a new release. 
+
+If a new version has been released by `semantic-release`, `make update` will update the Lambda code. It uses these environment variables (which are [provided via Travis](https://travis-ci.org/ResourcefulHumans/rheactor-image-service/settings)):
+
+ * `AWS_ACCESS_KEY_ID`  
+   The AWS access key to use
+ * `AWS_SECRET_ACCESS_KEY`  
+   The AWS secret access key to use
+
+The AWS credentials for Travis are taken from the [`rheactor-image-service@travis`](https://console.aws.amazon.com/iam/home?region=eu-central-1#/users/rheactor-image-service@travis) user.
+     
+You can create new AWS keys via [IAM](https://console.aws.amazon.com/iam/home?region=eu-central-1). Assign the new user to the group [`rheactor-image-service`](https://console.aws.amazon.com/iam/home?region=eu-central-1#/groups/rheactor-image-service) which has the neccessary permission to update Lambda function and write to the S3 bucket.
