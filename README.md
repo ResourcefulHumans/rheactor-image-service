@@ -18,13 +18,13 @@ It takes JPEG or PNG images that are uploaded base64 encoded, crops and resizes 
 
 | Original | Result  |
 |:--------:|:-------:|
-| ![Original](./test/data/d4d4d4.jpg) | ![Result](https://s3.eu-central-1.amazonaws.com/rheactor-image-service/example-com/0225bef5-bdca-4d76-a6c1-5d3b79a1353f-user-5.jpg) |
+| ![Original](./test/data/d4d4d4.jpg) | ![Result](./doc/d4d4d4-resized.jpg) |
 | JPEG  | JPEG |
 | 600x300  | 256x256 |
-| ![Original](./test/data/d4d4d4.png) | ![Result](https://s3.eu-central-1.amazonaws.com/rheactor-image-service/127-0-0-1-8080/c48476ec-d8d0-460a-b771-93ea4dbe5ec8-api-user-8.png) |
+| ![Original](./test/data/d4d4d4.png) | ![Result](./doc/d4d4d4-png-resized.jpg) |
 | PNG  | JPEG |
 | 600x300  | 256x256 |
-| ![Original](./test/data/11154d.jpg) | ![Result](https://s3.eu-central-1.amazonaws.com/rheactor-image-service/127-0-0-1-8080/977816ce-8620-486f-bea9-cdf2259e323e-api-user-8.jpg) |
+| ![Original](./test/data/11154d.jpg) | ![Result](./doc/11154d-resized.jpg) |
 | JPEG  | JPEG | 
 | 300x600  | 256x256 |
 
