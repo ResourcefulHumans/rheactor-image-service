@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help deploy update-lambda-function update-lambda-env update-env-vars delete clean update test
+.PHONY: help deploy update-lambda-function update-lambda-env update-env-vars delete clean update test test-prepare
 
 AWS_REGION ?= "eu-central-1"
 AWS_FUNCTION_NAME ?= "rheactor-image-service"
@@ -64,7 +64,7 @@ S3_BUCKET ?= rheactor-image-service
 S3_CFG := /tmp/.s3cfg-$(S3_BUCKET)
 HOSTNAME := $(shell hostname)
 
-test: ## Prepare and run the tests
+test-prepare:
 	# Create s3cmd config
 	@echo $(S3_CFG)
 	@echo "[default]" > $(S3_CFG)
@@ -73,6 +73,8 @@ test: ## Prepare and run the tests
 	@echo "bucket_location = $(AWS_REGION)" >> $(S3_CFG)
 
 	s3cmd -c $(S3_CFG) put -P -M --no-mime-magic ./test/data/public.key s3://$(S3_BUCKET)/$(HOSTNAME)-test.key
+
+test: test-prepare ## Prepare and run the tests
 	npm run test:coverage-travis
 
 # Helpers

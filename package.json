@@ -10,7 +10,7 @@
     "test:coverage": "NODE_ENV=testing VERSION=0.0.0 MOUNT_URL=http://example.com WEB_LOCATION=http://images.example.com S3_BUCKET=rheactor-image-service PUBLIC_KEY_FILE=`hostname`-test.key DEPLOY_TIME=`date +%s` istanbul cover _mocha -- --compilers js:babel-core/register --reporter=dot --timeout=1350 test/\\*\\*/\\*.js",
     "test:coverage-travis": "NODE_ENV=testing VERSION=0.0.0 MOUNT_URL=http://example.com WEB_LOCATION=http://images.example.com S3_BUCKET=rheactor-image-service PUBLIC_KEY_FILE=`hostname`-test.key DEPLOY_TIME=`date +%s` istanbul cover _mocha --report lcovonly -- --compilers js:babel-register --reporter=dot --timeout=10000 test/\\*\\*/\\*.js && codeclimate-test-reporter < ./coverage/lcov.info && rm -rf ./coverage",
     "lint": "standard",
-    "precommit": "npm run lint && npm test",
+    "precommit": "npm run lint && make test-prepare && npm run test",
     "commitmsg": "validate-commit-msg",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
