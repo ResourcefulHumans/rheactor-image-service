@@ -32,7 +32,7 @@
   "dependencies": {
     "@resourcefulhumans/rheactor-aws-lambda": "^3.1.0",
     "@resourcefulhumans/rheactor-errors": "^1.0.1",
-    "aws-sdk": "^2.17.0",
+    "aws-sdk": "^2.41.0",
     "bluebird": "^3.4.7",
     "gm": "^1.23.0",
     "jsonwebtoken": "^7.3.0",
@@ -43,11 +43,11 @@
   },
   "devDependencies": {
     "@resourcefulhumans/update-lambda-environment-config": "^1.1.0",
-    "babel-cli": "^6.22.2",
-    "babel-eslint": "^7.1.1",
-    "babel-preset-env": "^1.1.8",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-register": "^6.22.0",
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.2",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1",
     "chai": "^3.5.0",
     "codeclimate-test-reporter": "^0.4.1",
     "husky": "^0.13.3-0",
@@ -55,10 +55,13 @@
     "mocha": "^3.2.0",
     "mocha-lcov-reporter": "^1.3.0",
     "semantic-release": "^6.3.2",
-    "standard": "^9.0.2",
-    "validate-commit-msg": "^2.11.1"
+    "standard": "^10.0.2",
+    "validate-commit-msg": "^2.12.1"
   },
   "standard": {
     "parser": "babel-eslint"
+  },
+  "engines": {
+    "node": ">=6.9.0"
   }
 }

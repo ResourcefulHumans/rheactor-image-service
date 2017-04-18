@@ -29,7 +29,7 @@ const upload = (s3, bucket, webLocation, body, parts, token) => {
       const host = sub.toString().match(/^https?:\/\/([^/]+)/)[1].replace(/[^a-z0-9]/ig, '-') // group images by host
       const identifier = sub.toString().match(/^https?:\/\/[^/]+\/(.+)/)[1].replace(/[^a-z0-9]/ig, '-') // take the path part and add it as an identifier
       const filename = `${host}/${v4()}-${identifier}.${ext}`
-      const imageData = new Buffer(body.image, 'base64')
+      const imageData = Buffer.from(body.image, 'base64')
 
       return thumbnail(imageData, filename)
         .then(resized => Promise

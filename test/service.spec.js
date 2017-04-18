@@ -50,7 +50,7 @@ describe('service', () => {
 
   describe('/upload', () => {
     it('should scale and upload a JPEG image', done => {
-      const imageData = new Buffer(fs.readFileSync('./test/data/d4d4d4.jpg')).toString('base64')
+      const imageData = Buffer.from(fs.readFileSync('./test/data/d4d4d4.jpg')).toString('base64')
       const privateKey = fs.readFileSync('./test/data/private.key', 'utf-8')
       const token = jwt.sign({}, privateKey, {algorithm: 'RS256', subject: 'https://example.com/user/5', expiresIn: 60 * 60})
 
