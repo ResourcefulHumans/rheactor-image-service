@@ -35,7 +35,7 @@
     "aws-sdk": "^2.41.0",
     "bluebird": "^3.4.7",
     "gm": "^1.23.0",
-    "jsonwebtoken": "^7.3.0",
+    "jsonwebtoken": "^8.2.2",
     "rheactor-models": "^3.3.0",
     "rheactor-value-objects": "^10.0.0",
     "tcomb": "^3.2.17",
