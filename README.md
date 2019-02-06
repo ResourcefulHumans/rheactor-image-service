@@ -85,3 +85,11 @@ These environment variables need to be set on the lambda function:
     
     # install this as a new lambda function
     make install
+
+## Local testing
+
+For local testing use [**AWS SAM CLI**](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html). 
+It has docker as a dependency. To start local testing run `sam local start-api` command. It will read `template.yml` and create local container with built function.
+It is required to build the project first - all files must be in build folder.
+
+Because lambda function is not setting any additional CORS headers, easiest way is to use nginx to append them. Config for that is included in repo.

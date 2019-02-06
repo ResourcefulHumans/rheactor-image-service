@@ -1,0 +1,20 @@
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  ThumbnailFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Runtime: nodejs6.10
+      Handler: index.handler
+      Timeout: 25
+      Environment:
+        Variables:
+          MOUNT_URL: "http://127.0.0.1:3000"
+          WEB_LOCATION: 'http://127.0.0.1:8080'
+          S3_BUCKET: 'S3_BUCKET'
+      CodeUri: ./build
+      Events:
+        ImageService:
+            Type: Api
+            Properties:
+                Path: /upload
+                Method: POST

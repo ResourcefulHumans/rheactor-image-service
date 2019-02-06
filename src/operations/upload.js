@@ -25,10 +25,16 @@ const upload = (s3, bucket, webLocation, body, parts, token) => {
     .try(() => {
       UploadJSONType(body)
       const ext = body.mimeType === 'image/png' ? 'png' : 'jpg'
-      const sub = new URIValue(token.sub) // we expect token.sub to be an URI
-      const host = sub.toString().match(/^https?:\/\/([^/]+)/)[1].replace(/[^a-z0-9]/ig, '-') // group images by host
-      const identifier = sub.toString().match(/^https?:\/\/[^/]+\/(.+)/)[1].replace(/[^a-z0-9]/ig, '-') // take the path part and add it as an identifier
-      const filename = `${host}/${v4()}-${identifier}.${ext}`
+      let filename = null
+      if (isNaN(token.sub)) {
+        const sub = new URIValue(token.sub) // we expect token.sub to be an URI
+        const host = sub.toString().match(/^https?:\/\/([^/]+)/)[1].replace(/[^a-z0-9]/ig, '-') // group images by host
+        const identifier = sub.toString().match(/^https?:\/\/[^/]+\/(.+)/)[1].replace(/[^a-z0-9]/ig, '-') // take the path part and add it as an identifier
+        filename = `${host}/${v4()}-${identifier}.${ext}`
+      } else {
+        filename = `shared/${v4()}-${token.sub}.${ext}`
+      }
+
       const imageData = Buffer.from(body.image, 'base64')
 
       return thumbnail(imageData, filename)
