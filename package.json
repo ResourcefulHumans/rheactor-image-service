@@ -32,7 +32,7 @@
   "dependencies": {
     "@resourcefulhumans/rheactor-aws-lambda": "^3.1.0",
     "@resourcefulhumans/rheactor-errors": "^1.0.1",
-    "aws-sdk": "^2.41.0",
+    "aws-sdk": "^2.433.0",
     "bluebird": "^3.4.7",
     "gm": "^1.23.0",
     "jsonwebtoken": "^7.3.0",
