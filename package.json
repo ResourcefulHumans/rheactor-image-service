@@ -39,7 +39,7 @@
     "rheactor-models": "^3.3.0",
     "rheactor-value-objects": "^10.0.0",
     "tcomb": "^3.2.17",
-    "uuid": "^3.0.1"
+    "uuid": "^8.0.0"
   },
   "devDependencies": {
     "@resourcefulhumans/update-lambda-environment-config": "^1.1.0",
